@@ -5,6 +5,7 @@ using Xamarin.Forms.Internals;
 #if UITEST
 using Xamarin.UITest;
 using NUnit.Framework;
+using Xamarin.Forms.Core.UITests;
 #endif
 
 namespace Xamarin.Forms.Controls.Issues
@@ -47,6 +48,11 @@ namespace Xamarin.Forms.Controls.Issues
 	}
 	[Preserve(AllMembers = true)]
 	[Issue(IssueTracker.Bugzilla, 29247, "iOS Device.OpenUri breaks with encoded params 2", PlatformAffected.iOS, issueTestNumber: 2)]
+#if UITEST
+	// This one isn't failing on UWP but it opens a browser window
+	// and causes the rest to fail
+	[NUnit.Framework.Category(UITestCategories.UwpIgnore)]
+#endif
 	public class Bugzilla29247_2 : TestContentPage
 	{
 		protected override void Init()
