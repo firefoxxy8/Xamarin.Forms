@@ -44,7 +44,7 @@ namespace Xamarin.Forms.Controls.Issues
 			}
 		}
 
-#if UITEST && !__WINDOWS__
+#if UITEST && !__WINDOWS__ && !_iOS__
 		[Test]
 		public async Task SwapPagesOut_Ctor()
 		{
@@ -282,16 +282,16 @@ namespace Xamarin.Forms.Controls.Issues
 				base.OnAppearing();
 				await Task.Delay(500);
 				Detail.Navigation.PushAsync(new ContentPage());
-				Detail.Navigation.PushModalAsync(new NavigationPage(new ContentPage()));
+				Detail.Navigation.PushModalAsync(new NavigationPage(new ContentPage() { Title = "Details 2", Content = new Label() { Text = "Fail Still Modal" } }));
 
 				var navPage = new NavigationPage(new ContentPage() { Title = "Details" });
 				Detail = navPage;
 				Application.Current.MainPage = Issue2338TestHelper.CreateSuccessPage(nameof(Issue2338_MasterDetailsPage));
-				navPage.PushAsync(new ContentPage() { Title = "Details 2" });
+				navPage.PushAsync(new ContentPage() { Title = "Details 2", Content = new Label(){ Text = "Fail Second Pushed Page"} });
 			}
 		}
 
-#if UITEST
+#if UITEST && !__iOS__
 		[Test]
 		public async Task SwapPagesOut_MasterDetailsPage()
 		{
