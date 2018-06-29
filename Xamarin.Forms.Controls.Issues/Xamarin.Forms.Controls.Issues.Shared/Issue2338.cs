@@ -28,7 +28,6 @@ namespace Xamarin.Forms.Controls.Issues
 
 		protected override void Init()
 		{
-			Application.Current.MainPage = new NavigationPage(new Page1() { Title = "Title 1" });
 		}
 
 		protected override void OnAppearing()
@@ -45,7 +44,7 @@ namespace Xamarin.Forms.Controls.Issues
 			}
 		}
 
-#if UITEST
+#if UITEST && !__WINDOWS__
 		[Test]
 		public async Task SwapPagesOut_Ctor()
 		{
@@ -240,7 +239,7 @@ namespace Xamarin.Forms.Controls.Issues
 		}
 
 
-#if UITEST
+#if UITEST && !__WINDOWS__
 		[Test]
 		public async Task SwapPagesOut_TabbedPage()
 		{
