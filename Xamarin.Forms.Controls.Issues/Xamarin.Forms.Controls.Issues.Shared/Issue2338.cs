@@ -44,7 +44,7 @@ namespace Xamarin.Forms.Controls.Issues
 			}
 		}
 
-#if UITEST && !__WINDOWS__ && !_iOS__
+#if UITEST && !__WINDOWS__ && !__IOS__
 		[Test]
 		public async Task SwapPagesOut_Ctor()
 		{
@@ -291,7 +291,7 @@ namespace Xamarin.Forms.Controls.Issues
 			}
 		}
 
-#if UITEST && !__iOS__
+#if UITEST && !__IOS__
 		[Test]
 		public async Task SwapPagesOut_MasterDetailsPage()
 		{
